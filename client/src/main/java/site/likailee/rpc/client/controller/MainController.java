@@ -23,7 +23,7 @@ public class MainController {
 
     @GetMapping("client")
     public Object client() {
-        userService.getUserById(1L);
-        return Instant.now();
+        String result = userService.getUserById(1L);
+        return result;
     }
 }
