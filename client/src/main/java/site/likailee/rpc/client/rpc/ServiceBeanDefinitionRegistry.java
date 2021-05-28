@@ -18,7 +18,7 @@ import site.likailee.rpc.client.annotation.RemoteClass;
 
 import java.util.Set;
 
-import static site.likailee.rpc.client.common.Constants.CLIENT_SERVICE;
+import static site.likailee.rpc.client.common.Constants.RPC_INFO.CLIENT_SERVICE;
 
 /**
  * @author likailee.llk

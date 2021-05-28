@@ -4,15 +4,13 @@
  */
 package site.likailee.rpc.client;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import site.likailee.rpc.client.common.Constants;
+import site.likailee.rpc.client.common.RpcRequest;
 import site.likailee.rpc.client.util.HttpUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import static site.likailee.rpc.client.common.Constants.RPC_INFO.SERVER_SERVICE;
 
 /**
  * @author likailee.llk
@@ -22,9 +20,11 @@ public class HttpUtilsTest {
 
     @Test
     public void should_send_post_request() {
-        List<NameValuePair> nameValuePairList = new ArrayList<>();
-        nameValuePairList.add(new BasicNameValuePair("methodName", "hello"));
-        String result = HttpUtils.sendPost(Constants.SERVER_BASE_URL, nameValuePairList);
-        Assertions.assertEquals(result, "rpc server main");
+        RpcRequest request = new RpcRequest(SERVER_SERVICE + "UserService",
+                "getUserById",
+                "[java.lang.Long]",
+                "[1]");
+        String result = HttpUtils.callRemoteService(request);
+        Assertions.assertEquals("RpcRequest{clazz='site.likailee.rpc.server.service.UserService', methodName='getUserById', argTypes='[java.lang.Long]', argValues='[1]'}", result);
     }
 }

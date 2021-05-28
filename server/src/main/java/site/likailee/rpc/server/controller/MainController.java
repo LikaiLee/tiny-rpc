@@ -6,6 +6,7 @@ package site.likailee.rpc.server.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.likailee.rpc.server.common.RpcRequest;
 
 /**
  * @author likailee.llk
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
 
     @RequestMapping("/")
-    public String main() {
-        return "rpc server main";
+    public String main(RpcRequest request) {
+        return request.toString();
     }
 }
 

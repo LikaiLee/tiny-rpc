@@ -6,7 +6,7 @@ package site.likailee.rpc.client.service;
 
 import site.likailee.rpc.client.annotation.RemoteClass;
 
-import static site.likailee.rpc.client.common.Constants.SERVER_SERVICE;
+import static site.likailee.rpc.client.common.Constants.RPC_INFO.SERVER_SERVICE;
 
 /**
  * @author likailee.llk
