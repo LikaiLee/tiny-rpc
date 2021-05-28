@@ -39,7 +39,8 @@ public class ServiceProxy<T> implements InvocationHandler {
         }
         String argTypes = JSON.toJSONString(argTypeList);
         String argValues = JSON.toJSONString(args);
-
+        System.out.println(argTypes);
+        System.out.println(argValues);
         return null;
     }
 }

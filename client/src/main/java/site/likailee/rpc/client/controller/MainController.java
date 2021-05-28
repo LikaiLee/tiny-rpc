@@ -6,7 +6,9 @@ package site.likailee.rpc.client.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.likailee.rpc.client.service.UserService;
 
+import javax.annotation.Resource;
 import java.time.Instant;
 
 /**
@@ -16,8 +18,12 @@ import java.time.Instant;
 @RestController
 public class MainController {
 
+    @Resource
+    private UserService userService;
+
     @GetMapping("client")
     public Object client() {
+        userService.getUserById(1L);
         return Instant.now();
     }
 }

@@ -24,6 +24,10 @@ import java.util.Objects;
 public class HttpUtils {
     public static final int STATUS_OK = 200;
 
+    public static String callRemoteService(String clazz, String methodName, String argTypes, String argValues) {
+        return "";
+    }
+
     public static String sendPost(String url, List<NameValuePair> nameValuePairList) {
         CloseableHttpResponse response = null;
         try (CloseableHttpClient client = HttpClients.createDefault()) {
