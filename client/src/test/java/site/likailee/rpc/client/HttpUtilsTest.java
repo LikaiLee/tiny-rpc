@@ -4,7 +4,6 @@
  */
 package site.likailee.rpc.client;
 
-import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import site.likailee.rpc.client.common.RpcRequest;
@@ -22,9 +21,11 @@ public class HttpUtilsTest {
     public void should_send_post_request() {
         RpcRequest request = new RpcRequest(SERVER_SERVICE + "UserService",
                 "getUserById",
-                "[java.lang.Long]",
-                "[1]");
+                "[\"java.lang.Long\"]",
+                "[100]");
         String result = HttpUtils.callRemoteService(request);
-        Assertions.assertEquals("RpcRequest{clazz='site.likailee.rpc.server.service.UserService', methodName='getUserById', argTypes='[java.lang.Long]', argValues='[1]'}", result);
+        System.out.println(result);
+        Assertions.assertEquals("{\"name\":\"likailee\",\"email\":\"likailee.cn@gmail.com\",\"id\":100}", result);
+        // Assertions.assertEquals("RpcRequest{clazz='site.likailee.rpc.server.service.UserService', methodName='getUserById', argTypes='[java.lang.Long]', argValues='[1]'}", result);
     }
 }

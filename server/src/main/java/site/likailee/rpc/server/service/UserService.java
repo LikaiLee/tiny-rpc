@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class UserService {
 
-    String getUserById(Long id) {
+    public String getUserById(Long id) {
         Map<String, Object> user = new HashMap<>(4);
         user.put("id", id);
         user.put("name", "likailee");
