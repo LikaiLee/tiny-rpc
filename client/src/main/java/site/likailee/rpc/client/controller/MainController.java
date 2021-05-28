@@ -23,7 +23,6 @@ public class MainController {
 
     @GetMapping("client")
     public Object client() {
-        String result = userService.getUserById(1L);
-        return result;
+        return userService.getUserById(1L);
     }
 }

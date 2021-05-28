@@ -6,6 +6,7 @@ package site.likailee.rpc.client.rpc;
 
 import com.alibaba.fastjson.JSON;
 import site.likailee.rpc.client.annotation.RemoteClass;
+import site.likailee.rpc.client.common.Result;
 import site.likailee.rpc.client.common.RpcRequest;
 import site.likailee.rpc.client.util.HttpUtils;
 
@@ -42,6 +43,10 @@ public class ServiceProxy<T> implements InvocationHandler {
         String argTypes = JSON.toJSONString(argTypeList);
         String argValues = JSON.toJSONString(args);
         RpcRequest request = new RpcRequest(remoteClass.value(), method.getName(), argTypes, argValues);
-        return HttpUtils.callRemoteService(request);
+        Result result = HttpUtils.callRemoteService(request);
+        if (!result.isSuccess()) {
+            throw new Exception("remote call failed");
+        }
+        return JSON.parseObject(result.getResult(), Class.forName(result.getResultType()));
     }
 }

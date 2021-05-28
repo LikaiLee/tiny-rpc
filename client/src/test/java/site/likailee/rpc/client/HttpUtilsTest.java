@@ -6,6 +6,7 @@ package site.likailee.rpc.client;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import site.likailee.rpc.client.common.Result;
 import site.likailee.rpc.client.common.RpcRequest;
 import site.likailee.rpc.client.util.HttpUtils;
 
@@ -23,9 +24,7 @@ public class HttpUtilsTest {
                 "getUserById",
                 "[\"java.lang.Long\"]",
                 "[100]");
-        String result = HttpUtils.callRemoteService(request);
-        System.out.println(result);
-        Assertions.assertEquals("{\"name\":\"likailee\",\"email\":\"likailee.cn@gmail.com\",\"id\":100}", result);
-        // Assertions.assertEquals("RpcRequest{clazz='site.likailee.rpc.server.service.UserService', methodName='getUserById', argTypes='[java.lang.Long]', argValues='[1]'}", result);
+        Result result = HttpUtils.callRemoteService(request);
+        Assertions.assertEquals("Result{success=true, message='success', resultType='java.lang.String', result='\"{\\\"name\\\":\\\"likailee\\\",\\\"email\\\":\\\"likailee.cn@gmail.com\\\",\\\"id\\\":100}\"'}", result.toString());
     }
 }

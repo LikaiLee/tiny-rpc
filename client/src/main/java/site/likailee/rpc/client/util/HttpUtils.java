@@ -15,6 +15,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import site.likailee.rpc.client.common.Constants;
+import site.likailee.rpc.client.common.Result;
 import site.likailee.rpc.client.common.RpcRequest;
 
 import java.io.IOException;
@@ -29,14 +30,14 @@ import java.util.Objects;
 public class HttpUtils {
     public static final int STATUS_OK = 200;
 
-    public static String callRemoteService(RpcRequest request) {
+    public static Result callRemoteService(RpcRequest request) {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair(Constants.REQUEST_PARAMS.CLAZZ, request.getClazz()));
         params.add(new BasicNameValuePair(Constants.REQUEST_PARAMS.METHOD_NAME, request.getMethodName()));
         params.add(new BasicNameValuePair(Constants.REQUEST_PARAMS.ARG_TYPES, request.getArgTypes()));
         params.add(new BasicNameValuePair(Constants.REQUEST_PARAMS.ARG_VALUES, request.getArgValues()));
         String result = sendPost(Constants.RPC_INFO.SERVER_BASE_URL, params);
-        return result;
+        return JSON.parseObject(result, Result.class);
     }
 
     public static String sendPost(String url, List<NameValuePair> nameValuePairList) {
